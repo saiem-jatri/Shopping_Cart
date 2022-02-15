@@ -2,10 +2,12 @@
   <div class="product">
     <img :src="image">
     <h3> {{ title }}</h3>
-    <p>{{ price }}</p>
-    <button @click="$emit('product',title)">
-      tap me
+    <p>${{ price }}</p>
+<!--    <slot></slot>-->
+    <button class="btn" @click="$emit('product',title,price,id)">
+      Add To Cart
     </button>
+
   </div>
 </template>
 
@@ -15,7 +17,11 @@ export default {
   props: {
     title: String,
     image: String,
-    price: Number,
+    price:{
+      type:Number,
+      required: true,
+    },
+    id:Number,
   },
 }
 </script>
@@ -34,5 +40,14 @@ export default {
 .product img {
   width: 30%;
   height: 200px;
+}
+.btn {
+  width: 100%;
+  background: #5936f4;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 </style>
